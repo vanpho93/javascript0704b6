@@ -466,8 +466,6 @@ class Tin {
 const arrItems = data.split('<item>');
 arrItems.splice(0, 1);
 
-const anItem = arrItems[1];
-
 function getTitle(source) {
     return getBody(source, '<title>', '</title>');
 }
@@ -492,5 +490,8 @@ function getTin(source) {
     return new Tin(title, desc, image, link);
 }
 
-console.log(getTin(anItem));
+const arrTin = arrItems.map(item => getTin(item));
 
+console.log(arrTin);
+
+require('fs').writeFileSync('a.txt', JSON.stringify(arrTin), 'utf8');
